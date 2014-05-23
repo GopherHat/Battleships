@@ -24,7 +24,6 @@ public class PlayBattleships
 			int y = ConsoleInput.readInt();
 			Position currentpos = new Position(x,y,battleship.getSize());
 			battleship.setPos(currentpos);
-			//past me plz tell me what this means
 			battleship.update();
 			battleship.print();
 		}
