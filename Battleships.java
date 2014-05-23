@@ -1,7 +1,6 @@
 import io.*;
-public class Battleships 
+public class Battleships extends Map
 {
-private Map map;
 private TextFile file;
 private String filename;
 private int size;
@@ -14,8 +13,6 @@ private Position currentPosition;
 		file = new TextFile(filename, "r");
 		file.openFile();
 	}
-
-
 
 	public void setPos(Position pos_in)
 	{
@@ -109,13 +106,4 @@ private Position currentPosition;
 }
 
 
-		/*public static void main(String [] args)
-		{
-			filename = inputFilename(); 
-			//put the textfile object into read mode to read the file : filename
-			Battleships battleship = new Battleships(filename);
-			battleship.readAndOutputFile();
-		}*/
-
-
-   
+		
