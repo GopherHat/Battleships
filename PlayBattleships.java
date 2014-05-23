@@ -4,6 +4,26 @@ import io.*;
 
 public class PlayBattleships
 {
+	public static void loadFileToMap(Map mapin,TextFile filein)
+	{
+		int size = mapin.getMapSize();
+		for(int y=0;y<size;y++)
+		{
+			for(int x=0;x<size;x++)
+			{
+				char currentchar = filein.readChar();
+				mapin.setMapElement(x,y,currentchar);
+System.out.print(currentchar);
+			}
+System.out.print("\n");
+			filein.clearRestOfLine();
+		}
+
+	}
+
+
+
+
 	public static void main(String [] args) 
 	{		
 		/*Tell the user to put in a filename but politely suggest to get the */		
@@ -12,15 +32,18 @@ public class PlayBattleships
 		"game1.dat \n Enter FileName: ");
 		/*Get the name of the file from the user in the form of a string and store it into the string called filename*/
 		String filename = ConsoleInput.readWord();
-	System.out.println("filename is:" + filename);
 		/*Create an instance of map reader with the previous filename that the user entered*/
-		Battleships battleship = new Battleships(filename);	
-		while(battleship.checkIfGameIsNotOver())
+		TextFile file = new TextFile(filename, "r");
+		file.openFile();
+		int size = file.readInt();
+		file.clearRestOfLine();
+		Battleships battleship = new Battleships(size);	
+		loadFileToMap(battleship,file);
+		while(!(battleship.isGameOver()))
 		{
 			battleship.inputAndValidate();
-			battleship.readFile();
-			//battleship.update();
-			//battleship.print();
+			battleship.checkHit();
+			battleship.outputMap();
 		}
 	}
 }

@@ -1,15 +1,3 @@
-/*INPUT name
-create an instance of Map
-create an instance of textfile
-input the file into memory
-while the game is still going
-        input Position
-        process the input to the map
-        print out the map result form the memory
-loop
-*/
-
-
 /**Position class
  * This class has three fields.
  * x , y and size.
