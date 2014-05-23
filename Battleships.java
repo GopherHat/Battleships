@@ -7,20 +7,23 @@ private String filename;
 private int size;
 private Position currentPosition;
 
+
 	public Battleships(String filenamein)
 	{
 		filename = filenamein;
 		file = new TextFile(filename, "r");
 	}
 
+
+
 	public void setPos(Position pos_in)
 	{
-		
+		currentPosition = new Position(pos_in);
 	}
 
 	public int getSize(){return size;}
 
-	public void readAndOutputFile()
+	private void readAndOutputFile()
 	{
 		System.out.println("Here is the contents of the file " + filename + ":");
 		readFile();
@@ -33,30 +36,57 @@ private Position currentPosition;
 	}
 	public void readFile()
 	{
-		file.openFile();
-		readSizeFromFile();
-		readMapFromFile();
-
+		if(file.openFile())
+		{
+			readSizeAndPrint();
+		 readandOutputMap();
+		}
+		else
+		{
+			System.out.println("Unable to properly open the file. Are you sure that the filename is valid. Does the file even exist?");
+		}
 	}
 
-	private void readSizeFromFile()
+	private void readSizeAndPrint()
 	{
 		size = file.readInt();
-		file.newLine();
+		
 	}
 
-	private void readMapFromFile()
+	private void readandOutputMap()
 	{
-		for(int x=0;x<size;x++)
-		{
-    	   		for(int y = 0; y < size; y++)
-    	   		{
-    	   			file.readChar();
-	    	           		file.printIt(map.getMapElement(x, y));	
+			System.out.println("The file is opened");
+			System.out.println(size);
+			for(int x=0;x<=size;x++)
+    	   		{	
+    	   			for(int y = 0; y < size; y++)
+    	   			{
+	    	           			System.out.print(file.readChar());
+    	   			}
+    	   			if(file.endOfFile())
+    	   			{
+    	   				System.out.print("\n");
+    	   			}
     	   		}
-    	    		file.newLine();
+    	   	System.out.print("\n");
+    }
+
+    private boolean checkIfGameIsNotOver()
+	{
+		boolean returnval = false;
+		while(!file.endOfFile())
+		{
+			if(file.readChar() == SHIP)
+			{
+				returnval = true;
+			}
 		}
-       	 }
+		return returnval;
+    }
+
+
+    
+
 
 }
 

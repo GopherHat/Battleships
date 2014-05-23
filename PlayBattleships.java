@@ -4,15 +4,15 @@ import io.*;
 
 public class PlayBattleships
 {
-
-	public static void main(String [] args)
+	public static void main(String [] args) 
 	{		
 		/*Tell the user to put in a filename but politely suggest to get the */		
 		System.out.println("Make sure the map file is the following format \n"+
 		"<filename>.dat \n the test file is named: \n" +
 		"game1.dat \n Enter FileName: ");
 		/*Get the name of the file from the user in the form of a string and store it into 			the string called filename*/
-		String filename = ConsoleInput.readLine();
+		String filename = ConsoleInput.readWord();
+	System.out.println("filename is:" + filename);
 		/*Create an instance of map reader with the previous filename that the user 			entered*/
 		Battleships battleship = new Battleships(filename);
 		boolean gameIsOn = true;	
@@ -22,10 +22,11 @@ public class PlayBattleships
 			int x = ConsoleInput.readInt();
 			System.out.println("Input y Coordinate: ");
 			int y = ConsoleInput.readInt();
+			battleship.readFile();
 			Position currentpos = new Position(x,y,battleship.getSize());
 			battleship.setPos(currentpos);
-			battleship.update();
-			battleship.print();
+			//battleship.update();
+			//battleship.print();
 		}
 	}
 }

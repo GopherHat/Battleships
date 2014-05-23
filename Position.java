@@ -36,15 +36,21 @@ public class Position
 		System.out.println("Input the Y Coordinate:");
 		inputAndValidate(y,size);
 	}
-
+	//Copy Constructor
 	public Position(Position pos_in)
 	{
-		this(pos_in.getX(),pos_in.getY(),pos_in.getSize());
+		//Keep in mind that I could have done this:
+		//this(pos_in.getX(),pos_in.getY(),pos_in.getSize());
+		//Compiles and works
+		setX(pos_in.getX());
+		setY(pos_in.getY());
+		setSize(pos_in.getSize());
+		
 	}
 
 	int getX(){return x;}
 	int getY(){return y;}
-	int getSize(){return y;}
+	int getSize(){return size;}
 	private int inputAndValidate(int coord,int size)
 	{
 		//sneaky way to enter the while loop
@@ -62,13 +68,17 @@ public class Position
 	    return coord;
 	}
 		
-	private void sety(int yin)
+	private void setY(int yin)
 	{
 		y = yin;
 	}	
 
-	private void setx(int xin)
+	private void setX(int xin)
 	{
 		x = xin;
-	}	
+	}
+	private void setSize(int sizein)
+	{
+		size = sizein;
+	}
 }
