@@ -36,7 +36,7 @@ private Position currentPosition;
 
 	private void readSizeFromFile()
 	{
-		size = file.readInt();
+		size = file.readInt();v
 		file.newLine();
 	}
 
@@ -47,7 +47,7 @@ private Position currentPosition;
     	   		for(int y = 0; y < size; y++)
     	   		{
     	   			file.readChar();
-	    	           	file.printIt(map.getMapElement(x, y));	
+	    	           		file.printIt(map.getMapElement(x, y));	
     	   		}
     	    		file.newLine();
 		}
