@@ -75,7 +75,7 @@ private boolean validateCoords( int row, int col)
 
 private void initialiseMap()
    {
-   f int row = 0; row<size; row++)
+   for(int row = 0; row<size; row++)
       for( int col = 0; col<size; col++)
          theMap[row][col] = UNINITIALISED;
    }
