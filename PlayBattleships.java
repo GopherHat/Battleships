@@ -10,21 +10,15 @@ public class PlayBattleships
 		System.out.println("Make sure the map file is the following format \n"+
 		"<filename>.dat \n the test file is named: \n" +
 		"game1.dat \n Enter FileName: ");
-		/*Get the name of the file from the user in the form of a string and store it into 			the string called filename*/
+		/*Get the name of the file from the user in the form of a string and store it into the string called filename*/
 		String filename = ConsoleInput.readWord();
 	System.out.println("filename is:" + filename);
-		/*Create an instance of map reader with the previous filename that the user 			entered*/
-		Battleships battleship = new Battleships(filename);
-		boolean gameIsOn = true;	
-		while(gameIsOn)
+		/*Create an instance of map reader with the previous filename that the user entered*/
+		Battleships battleship = new Battleships(filename);	
+		while(battleship.checkIfGameIsNotOver())
 		{
-			System.out.println("Input x Coordinate: ");
-			int x = ConsoleInput.readInt();
-			System.out.println("Input y Coordinate: ");
-			int y = ConsoleInput.readInt();
+			battleship.inputAndValidate();
 			battleship.readFile();
-			Position currentpos = new Position(x,y,battleship.getSize());
-			battleship.setPos(currentpos);
 			//battleship.update();
 			//battleship.print();
 		}

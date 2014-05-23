@@ -12,6 +12,7 @@ private Position currentPosition;
 	{
 		filename = filenamein;
 		file = new TextFile(filename, "r");
+		file.openFile();
 	}
 
 
@@ -22,6 +23,20 @@ private Position currentPosition;
 	}
 
 	public int getSize(){return size;}
+
+
+	public void inputAndValidate()
+	{
+		int x,y;
+		do
+		{
+			System.out.println("Input x Coordinate: ");
+			x = ConsoleInput.readInt();
+			System.out.println("Input y Coordinate: ");
+			y = ConsoleInput.readInt();
+		}while(x < size || y < size);
+		currentPosition = new Position(x,y);
+	}
 
 	private void readAndOutputFile()
 	{
@@ -39,7 +54,7 @@ private Position currentPosition;
 		if(file.openFile())
 		{
 			readSizeAndPrint();
-		 readandOutputMap();
+		 	readandOutputMap();
 		}
 		else
 		{
@@ -55,20 +70,23 @@ private Position currentPosition;
 
 	private void readandOutputMap()
 	{
-			System.out.println("The file is opened");
-			System.out.println(size);
-			for(int x=0;x<=size;x++)
-    	   		{	
-    	   			for(int y = 0; y < size; y++)
-    	   			{
-	    	           			System.out.print(file.readChar());
-    	   			}
-    	   			if(file.endOfFile())
-    	   			{
-    	   				System.out.print("\n");
-    	   			}
-    	   		}
-    	   	System.out.print("\n");
+		System.out.println("The file is opened");
+		System.out.println(size);
+		for(int x=0;x<=size;x++)
+	   	{			
+	   			for(int y = 0; y < size; y++)
+	   			{
+    	        	char currentchar = file.readChar();
+
+    	           	System.out.print(currentchar);
+	   			}
+
+	   			if(file.endOfFile())
+	   			{
+	   				System.out.print("\n");
+	   			}
+	   	}
+	   	System.out.print("\n");
     }
 
     private boolean checkIfGameIsNotOver()
@@ -76,7 +94,7 @@ private Position currentPosition;
 		boolean returnval = false;
 		while(!file.endOfFile())
 		{
-			if(file.readChar() == SHIP)
+			if(file.readChar() == Map.SHIP)
 			{
 				returnval = true;
 			}
@@ -85,7 +103,7 @@ private Position currentPosition;
     }
 
 
-    
+
 
 
 }

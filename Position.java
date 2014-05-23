@@ -21,21 +21,12 @@ public class Position
 	
 	private int x;
 	private int y;
-	private int size;
-	public Position(int xin,int yin,int sizein)
+	public Position(int xin,int yin)
 	{
 		x = xin;
 		y = yin;
-		size = sizein;
 	}
-	public Position(int sizein)
-	{
-		size = sizein;
-		System.out.println("Input the X Coordinate:");
-		inputAndValidate(x,size);
-		System.out.println("Input the Y Coordinate:");
-		inputAndValidate(y,size);
-	}
+
 	//Copy Constructor
 	public Position(Position pos_in)
 	{
@@ -44,30 +35,15 @@ public class Position
 		//Compiles and works
 		setX(pos_in.getX());
 		setY(pos_in.getY());
-		setSize(pos_in.getSize());
+		
 		
 	}
 
 	int getX(){return x;}
 	int getY(){return y;}
-	int getSize(){return size;}
-	private int inputAndValidate(int coord,int size)
-	{
-		//sneaky way to enter the while loop
-	    coord += size;
-	    while(0 <= coord && coord <= size)
-		{
-	    	coord = inputCoord();
-		}
-	        return coord;
-	}
 
-	int inputCoord()
-	{
-		int coord = ConsoleInput.readInt();
-	    return coord;
-	}
-		
+
+
 	private void setY(int yin)
 	{
 		y = yin;
@@ -77,8 +53,5 @@ public class Position
 	{
 		x = xin;
 	}
-	private void setSize(int sizein)
-	{
-		size = sizein;
-	}
+
 }
