@@ -7,18 +7,18 @@ private String filename;
 private int size;
 private Position currentPosition;
 
-
 	public Battleships(String filenamein)
 	{
 		filename = filenamein;
 		file = new TextFile(filename, "r");
 	}
 
+	public int getSize(){return size;}
 
 	public void readAndOutputFile()
 	{
 		System.out.println("Here is the contents of the file " + filename + ":");
-		readFile(filename);
+		readFile();
 	}
 
 	public String inputFilename()
@@ -29,14 +29,14 @@ private Position currentPosition;
 	public void readFile()
 	{
 		file.openFile();
-		file.readSizeFromFile();
-		file.readMapFromFile();
+		readSizeFromFile();
+		readMapFromFile();
 
 	}
 
 	private void readSizeFromFile()
 	{
-		size = file.readInt();v
+		size = file.readInt();
 		file.newLine();
 	}
 
@@ -51,18 +51,18 @@ private Position currentPosition;
     	   		}
     	    		file.newLine();
 		}
-        }
+       	 }
 
-	}
+}
 
 
-		public static void main(String [] args)
+		/*public static void main(String [] args)
 		{
 			filename = inputFilename(); 
 			//put the textfile object into read mode to read the file : filename
 			Battleships battleship = new Battleships(filename);
 			battleship.readAndOutputFile();
-		}
-}
+		}*/
+
 
    

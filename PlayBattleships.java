@@ -4,6 +4,7 @@ import io.*;
 
 public class PlayBattleships
 {
+
 	public static void main(String [] args)
 	{		
 		/*Tell the user to put in a filename but politely suggest to get the */		
@@ -21,7 +22,7 @@ public class PlayBattleships
 			int x = ConsoleInput.readInt();
 			System.out.println("Input y Coordinate: ");
 			int y = ConsoleInput.readInt();
-			Position currentpos = new Position(x,y);
+			Position currentpos = new Position(x,y,battleship.getSize());
 			battleship.setPos(currentpos);
 			battleship.update();
 			battleship.print();
