@@ -13,6 +13,11 @@ private Position currentPosition;
 		file = new TextFile(filename, "r");
 	}
 
+	public void setPos(Position pos_in)
+	{
+		
+	}
+
 	public int getSize(){return size;}
 
 	public void readAndOutputFile()

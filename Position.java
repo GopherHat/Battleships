@@ -35,10 +35,16 @@ public class Position
 		inputAndValidate(x,size);
 		System.out.println("Input the Y Coordinate:");
 		inputAndValidate(y,size);
-		
 	}
-	int getx(){return x;}
-	int gety(){return y;}
+
+	public Position(Position pos_in)
+	{
+		this(pos_in.getX(),pos_in.getY(),pos_in.getSize());
+	}
+
+	int getX(){return x;}
+	int getY(){return y;}
+	int getSize(){return y;}
 	private int inputAndValidate(int coord,int size)
 	{
 		//sneaky way to enter the while loop
