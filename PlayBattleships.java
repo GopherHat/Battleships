@@ -1,6 +1,4 @@
 import io.*;
-//import TextFile;
-//import Map;
 
 public class PlayBattleships
 {
@@ -34,7 +32,9 @@ System.out.print("\n");
 		String filename = ConsoleInput.readWord();
 		/*Create an instance of map reader with the previous filename that the user entered*/
 		TextFile file = new TextFile(filename, "r");
+		//open the file
 		file.openFile();
+		//get the size from the file to put into the Battleships class
 		int size = file.readInt();
 		file.clearRestOfLine();
 		Battleships battleship = new Battleships(size);	
@@ -45,5 +45,6 @@ System.out.print("\n");
 			battleship.checkHit();
 			battleship.outputMap();
 		}
+			System.out.println("Number of Ships That Got REKT:" + battleship.getRekt() + "\nNumber of Times that you Shrekt up:" + battleship.getShrekt() + "\n");
 	}
 }

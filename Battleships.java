@@ -1,14 +1,29 @@
 import io.*;
 public class Battleships extends Map
 {
-private TextFile file;
-private String filename;
-private Position currentPosition;
+	private TextFile file;
+	private String filename;
+	private Position currentPosition;
+	private int hitCount;
+	private int missCount;
 
 
 	public Battleships(int size_in)
 	{
 		super(size_in);
+		hitCount = 0;
+		missCount = 0;
+	}
+
+
+	public int getRekt()
+	{
+		return hitCount;
+	}
+
+	public int getShrekt()
+	{
+		return missCount;
 	}
 
 	public void checkHit()
@@ -17,14 +32,15 @@ private Position currentPosition;
 		int y=currentPosition.getY();
 		char currentTile = getMapElement(x,y);
 		if(currentTile == Map.SHIP)
-			{setMapElement(x,y,Map.SHIPHIT);}
+			{
+				setMapElement(x,y,Map.SHIPHIT);
+				hitCount++;
+			}
+		else
+			{
+				missCount++;
+			}
 	}
-
-	public void setPos(Position pos_in)
-	{
-		currentPosition = new Position(pos_in);
-	}
-
 
 	public void inputAndValidate()
 	{
@@ -56,17 +72,17 @@ private Position currentPosition;
 
     public boolean isGameOver()
 	{
-		boolean returnval = true;
-		for(int x=0;x<getMapSize();x++)
+		boolean returnVal = true;
+		for(int y=0;y<getMapSize();y++)
 		{
-			for(int y=0;y<getMapSize();y++)
+			for(int x=0;x<getMapSize();x++)
 			{
 				if(getMapElement(x,y) == Map.SHIP)
 				{
-					returnval = false;
+					returnVal = false;
 				}
 			}
 		}
-		return returnval;
+		return returnVal;
     }
 }
