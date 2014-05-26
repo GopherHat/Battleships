@@ -11,9 +11,9 @@ public class PlayBattleships
 			{
 				char currentchar = filein.readChar();
 				mapin.setMapElement(x,y,currentchar);
-System.out.print(currentchar);
+				System.out.print(currentchar);
 			}
-System.out.print("\n");
+			System.out.print("\n");
 			filein.clearRestOfLine();
 		}
 
@@ -45,6 +45,10 @@ System.out.print("\n");
 			battleship.checkHit();
 			battleship.outputMap();
 		}
-			System.out.println("Number of Ships That Got REKT:" + battleship.getRekt() + "\nNumber of Times that you Shrekt up:" + battleship.getShrekt() + "\n");
+			System.out.println("Congratulations!\nYou Won!\nNumber of Ships That Got Destroyed:" + 
+								battleship.getHitCount() + 
+								"\nNumber of Times that You Missed:" +
+				 				battleship.getMissCount() +
+				  				"\n");
 	}
 }

@@ -7,21 +7,25 @@ public class Battleships extends Map
 	private int hitCount;
 	private int missCount;
 
-
+	//Battlships Defualt Constructor
+	//Inputs size_in
 	public Battleships(int size_in)
 	{
+		//size_in is put into the super class Map's Constructor
 		super(size_in);
+		//Since the game has just been created the default constructor
+		//defualt settings for beginining of game
 		hitCount = 0;
 		missCount = 0;
 	}
 
-
-	public int getRekt()
+	//getter for hitCount
+	public int getHitCount()
 	{
 		return hitCount;
 	}
-
-	public int getShrekt()
+	//getter for missCount
+	public int getMissCount()
 	{
 		return missCount;
 	}
@@ -29,7 +33,7 @@ public class Battleships extends Map
 	public void checkHit()
 	{
 		int x = currentPosition.getX();
-		int y=currentPosition.getY();
+		int y = currentPosition.getY();
 		char currentTile = getMapElement(x,y);
 		if(currentTile == Map.SHIP)
 			{
@@ -45,23 +49,29 @@ public class Battleships extends Map
 	public void inputAndValidate()
 	{
 		int x,y;
+		int size = getMapSize();
 		do
 		{
 			System.out.println("Input x Coordinate: ");
 			x = ConsoleInput.readInt();
 			System.out.println("Input y Coordinate: ");
 			y = ConsoleInput.readInt();
-		}while(!(x < getMapSize() || y < getMapSize()));
+			if(!(x < size || y < size))
+			{	
+				System.out.println("\nInput is invalid: "+
+				"Please input a number between the 0 and the size of the map");
+			}
+		}while(!(x < size || y < size));
 		currentPosition = new Position(x,y);
 	}
 
 
 	public void outputMap()
 	{
-		
-		for(int y=0;y<getMapSize();y++)
+		int size = getMapSize();
+		for(int y=0;y<size;y++)
 	   	{			
-	   			for(int x = 0; x < getMapSize(); x++)
+	   			for(int x = 0; x < size; x++)
 	   			{
     	           	System.out.print(getMapElement(x,y));
 	   			}
@@ -73,9 +83,10 @@ public class Battleships extends Map
     public boolean isGameOver()
 	{
 		boolean returnVal = true;
-		for(int y=0;y<getMapSize();y++)
+		int size = getMapSize();
+		for(int y=0;y<size;y++)
 		{
-			for(int x=0;x<getMapSize();x++)
+			for(int x=0;x<size;x++)
 			{
 				if(getMapElement(x,y) == Map.SHIP)
 				{
