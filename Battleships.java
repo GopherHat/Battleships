@@ -6,6 +6,7 @@ public class Battleships extends Map
 	private Position currentPosition;
 	private int hitCount;
 	private int missCount;
+	//This is just used cosmetically to clear the line after everything
 
 	//Battlships Defualt Constructor
 	//Inputs size_in
@@ -18,7 +19,7 @@ public class Battleships extends Map
 		hitCount = 0;
 		missCount = 0;
 	}
-
+	
 	//getter for hitCount
 	public int getHitCount()
 	{
@@ -57,7 +58,7 @@ public class Battleships extends Map
 			System.out.println("Input y Coordinate: ");
 			y = ConsoleInput.readInt();
 			if(!(x < size || y < size))
-			{	
+			{
 				System.out.println("\nInput is invalid: "+
 				"Please input a number between the 0 and the size of the map");
 			}
@@ -70,17 +71,17 @@ public class Battleships extends Map
 	{
 		int size = getMapSize();
 		for(int y=0;y<size;y++)
-	   	{			
-	   			for(int x = 0; x < size; x++)
-	   			{
-    	           	System.out.print(getMapElement(x,y));
-	   			}
-	   			System.out.print("\n");
-	   	}
-	   	System.out.print("\n");
+		{			
+				for(int x = 0; x < size; x++)
+				{
+					System.out.print(getMapElement(x,y));
+				}
+				System.out.print("\n");
+		}
+		System.out.print("\n");
     }
 
-    public boolean isGameOver()
+public boolean isGameOver()
 	{
 		boolean returnVal = true;
 		int size = getMapSize();
