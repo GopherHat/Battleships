@@ -14,12 +14,39 @@ public class Battleships extends Map
 		//size_in is put into the super class Map's Constructor
 		super(size_in);
 		loadFileToMap(filein);
+		cls();
+		System.out.println("BATTLESHIPS" +
+"	                                                                             \n"+
+"                         `-              . .                                    \n"+
+"                          :              ..h.                                   \n"+
+"                         .o        `..:  :odh/                                  \n"+
+"                       .--y....` `-+hdm-`-yhho-/.``                             \n"+
+"               ``.``-`/oh/syhhhyyyyyhhds+ohhdhyyyys:/o+/..-.``                  \n"+
+"-------:--:/+s+syyysyshhhhhhhdhhhyhhhyyhhhhhyhhhhhhyyhhy//yyyy/++:::::::::+:://-\n"+
+".+yyyyyyyyyhhhhhhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyyyyhhhhhhhhhhyyyssssssssssssy- \n"+
+"  ``:soyyhdhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy  \n");
+
 		//Since the game has just been created the default constructor
 		//defualt settings for beginining of game
 		hitCount = 0;
 		missCount = 0;
 	}
-	
+	private void cls()
+	{
+		for(int i=0;i<24;i++)
+		System.out.println("\n");
+	}
+	public int getHitCount()
+	{
+		return hitCount;
+	}
+
+	public int getMissCount()
+	{
+		return missCount;
+	}
+
+
 	public void checkHit()
 	{
 		int x = currentPosition.getX();
@@ -33,12 +60,34 @@ public class Battleships extends Map
 			}
 		else
 			{
+				System.out.println("MISS!");
 				missCount++;
 			}
 	}
 	private void alertHit()
 	{
 		System.out.println("BOOM!");
+		System.out.println( "            --_--\n"+
+							"         (  -_    _).\n"+
+							"       ( ~       )   )\n"+
+							"     (( )  (    )  ()  )\n"+
+							"      (.   )) (       )\n"+
+							"        ``..     ..``\n"+
+							"             | |\n"+
+							"           (=| |=)\n"+
+							"             | |         \n"+
+							"         (../( )\\.))");
+				System.out.println("" +
+		"	                                                                             \n"+
+		"             /\\            `-              . .                                 \n"+
+		"            (  )           :      /)        ..h.                                \n"+
+		"          ' )  \\           .o    ( \\ `..:  :odh/              (\\             \n"+
+		"         , (    \\    .--y....\\*|`-+h\\  `-yhho-/.``           |  )            \n"+
+		"           /   ``.``-`/oh/syhhhyyyyyhhd/  hhdhyyyys:/o+/..-.`` / /) \\          \n"+
+		"-------:--:/+s+syyysyshhhhhhhdhhhyhhhyy>  hhyhhhhhhyyhhy//yyyy/++:::::::::+:://-\n"+
+		".+yyyyyyyyyhhhhhhhhhhhhhhhhhyyyyyyyyyyy>  yyyyyyyyyyhhhhhhhhhhyyyssssssssssssy- \n"+
+		"  ``:soyyhdhhhhhhhhhhhhhhhhhhhhhhhhhhh/   \\hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy \n");
+
 	}
 
 
