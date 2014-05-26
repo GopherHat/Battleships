@@ -1,36 +1,25 @@
 import io.*;
 public class Battleships extends Map
 {
-	private TextFile file;
-	private String filename;
 	private Position currentPosition;
 	private int hitCount;
 	private int missCount;
+	private int turnCount;
 	//This is just used cosmetically to clear the line after everything
 
 	//Battlships Defualt Constructor
 	//Inputs size_in
-	public Battleships(int size_in)
+	public Battleships(int size_in, TextFile filein)
 	{
 		//size_in is put into the super class Map's Constructor
 		super(size_in);
+		loadFileToMap(filein);
 		//Since the game has just been created the default constructor
 		//defualt settings for beginining of game
 		hitCount = 0;
 		missCount = 0;
 	}
 	
-	//getter for hitCount
-	public int getHitCount()
-	{
-		return hitCount;
-	}
-	//getter for missCount
-	public int getMissCount()
-	{
-		return missCount;
-	}
-
 	public void checkHit()
 	{
 		int x = currentPosition.getX();
@@ -38,6 +27,7 @@ public class Battleships extends Map
 		char currentTile = getMapElement(x,y);
 		if(currentTile == Map.SHIP)
 			{
+				alertHit();
 				setMapElement(x,y,Map.SHIPHIT);
 				hitCount++;
 			}
@@ -46,11 +36,21 @@ public class Battleships extends Map
 				missCount++;
 			}
 	}
+	private void alertHit()
+	{
+		System.out.println("BOOM!");
+	}
+
+
 
 	public void inputAndValidate()
 	{
 		int x,y;
 		int size = getMapSize();
+		if(askToSeeMap() == true)
+			{
+				outputMap();
+			}
 		do
 		{
 			System.out.println("Input x Coordinate: ");
@@ -66,6 +66,32 @@ public class Battleships extends Map
 		currentPosition = new Position(x,y);
 	}
 
+	private boolean askToSeeMap()
+	{
+		boolean returnval = false;
+		System.out.println("Do you want to see the map?");
+		String userInput = ConsoleInput.readWord();
+		if(userInput.equals("yes"))
+		{
+			returnval = true;
+		}
+		return returnval;
+	}
+
+	private void loadFileToMap(TextFile filein)
+	{
+		int size = getMapSize();
+		for(int y=0;y<size;y++)
+		{
+			for(int x=0;x<size;x++)
+			{
+				char currentchar = filein.readChar();
+				setMapElement(x,y,currentchar);
+			}
+			filein.clearRestOfLine();
+		}
+
+	}
 
 	public void outputMap()
 	{

@@ -4,26 +4,6 @@ import io.*;
 public class PlayBattleships
 {
 	//This is just a 
-	
-	public static void loadFileToMap(Map mapin,TextFile filein)
-	{
-		int size = mapin.getMapSize();
-		for(int y=0;y<size;y++)
-		{
-			for(int x=0;x<size;x++)
-			{
-				char currentchar = filein.readChar();
-				mapin.setMapElement(x,y,currentchar);
-				System.out.print(currentchar);
-			}
-			System.out.print("\n");
-			filein.clearRestOfLine();
-		}
-
-	}
-
-
-
 
 	public static void main(String [] args) 
 	{
@@ -41,13 +21,11 @@ public class PlayBattleships
 		//get the size from the file to put into the Battleships class
 		int size = file.readInt();
 		file.clearRestOfLine();
-		Battleships battleship = new Battleships(size);	
-		loadFileToMap(battleship,file);
+		Battleships battleship = new Battleships(size,file);	
 		while(!(battleship.isGameOver()))
 		{
 			battleship.inputAndValidate();
 			battleship.checkHit();
-			battleship.outputMap();
 		}
 			System.out.println("Congratulations!\nYou win!\nNumber of Ships That Got Destroyed:" +
 								battleship.getHitCount() + 
