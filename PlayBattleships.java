@@ -7,30 +7,30 @@ public class PlayBattleships
 
 	public static void main(String [] args) 
 	{
-		/*Tell the user to put in a filename but politely suggest to get the */
-		System.out.println("Make sure the map file is the following format \n"+
-		"<filename>.dat \n the test file is named: \n" +
-		"game1.dat \n Enter FileName: ");
-		/*Get the name of the file from the user in the form of a string
-		store it into the string called filename*/
-		String filename = ConsoleInput.readWord();
-		/*Create an instance of map reader with the previous filename that the user entered*/
-		TextFile file = new TextFile(filename, "r");
-		//open the file
-		file.openFile();
+		String filename;
+		TextFile file;
+		do
+		{
+			System.out.println("Make sure the map file is the following format \n"+
+			"<filename>.dat \nthe test file is named: game1.dat \n" + "To Quit the game Ctrl + C\n"+ "Enter FileName: ");
+			filename = ConsoleInput.readWord();
+			file = new TextFile(filename, "r");
+			file.openFile();
+		}while(!file.readStatus());
+
 		//get the size from the file to put into the Battleships class
 		int size = file.readInt();
 		file.clearRestOfLine();
-		Battleships battleship = new Battleships(size,file);	
+		
+		System.gc();
+		
+		//Game Logic
+		Battleships battleship = new Battleships(size,file);
 		while(!(battleship.isGameOver()))
 		{
 			battleship.inputAndValidate();
 			battleship.checkHit();
 		}
-			System.out.println("Congratulations!\nYou win!\nNumber of Ships That Got Destroyed:" +
-								battleship.getHitCount() + 
-								"\nNumber of Times that You Missed:" +
-				 				battleship.getMissCount() +
-				  				"\n");
+		battleship.giveScore();	
 	}
 }

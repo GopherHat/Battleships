@@ -36,12 +36,12 @@ public class Battleships extends Map
 		for(int i=0;i<24;i++)
 		System.out.println("\n");
 	}
-	public int getHitCount()
+	private int getHitCount()
 	{
 		return hitCount;
 	}
 
-	public int getMissCount()
+	private int getMissCount()
 	{
 		return missCount;
 	}
@@ -53,16 +53,16 @@ public class Battleships extends Map
 		int y = currentPosition.getY();
 		char currentTile = getMapElement(x,y);
 		if(currentTile == Map.SHIP)
-			{
+		{
 				alertHit();
 				setMapElement(x,y,Map.SHIPHIT);
 				hitCount++;
-			}
+		}
 		else
-			{
+		{
 				System.out.println("MISS!");
 				missCount++;
-			}
+		}
 	}
 	private void alertHit()
 	{
@@ -77,29 +77,25 @@ public class Battleships extends Map
 							"           (=| |=)\n"+
 							"             | |         \n"+
 							"         (../( )\\.))");
-				System.out.println("" +
-		"	                                                                             \n"+
-		"             /\\            `-              . .                                 \n"+
-		"            (  )           :      /)        ..h.                                \n"+
-		"          ' )  \\           .o    ( \\ `..:  :odh/              (\\             \n"+
-		"         , (    \\    .--y....\\*|`-+h\\  `-yhho-/.``           |  )            \n"+
-		"           /   ``.``-`/oh/syhhhyyyyyhhd/  hhdhyyyys:/o+/..-.`` / /) \\          \n"+
-		"-------:--:/+s+syyysyshhhhhhhdhhhyhhhyy>  hhyhhhhhhyyhhy//yyyy/++:::::::::+:://-\n"+
-		".+yyyyyyyyyhhhhhhhhhhhhhhhhhyyyyyyyyyyy>  yyyyyyyyyyhhhhhhhhhhyyyssssssssssssy- \n"+
-		"  ``:soyyhdhhhhhhhhhhhhhhhhhhhhhhhhhhh/   \\hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy \n");
-
 	}
 
-
+	public void giveScore()
+	{
+		System.out.println("Congratulations!\nYou win!\nNumber of Ships That Got Destroyed:" +
+								getHitCount() + 
+								"\nNumber of Times that You Missed:" +
+				 				getMissCount() +
+				  				"\n");
+	}
 
 	public void inputAndValidate()
 	{
 		int x,y;
 		int size = getMapSize();
 		if(askToSeeMap() == true)
-			{
-				outputMap();
-			}
+		{
+			outputMap();
+		}
 		do
 		{
 			System.out.println("Input x Coordinate: ");
@@ -142,6 +138,7 @@ public class Battleships extends Map
 
 	}
 
+
 	public void outputMap()
 	{
 		int size = getMapSize();
@@ -156,7 +153,7 @@ public class Battleships extends Map
 		System.out.print("\n");
     }
 
-public boolean isGameOver()
+	public boolean isGameOver()
 	{
 		boolean returnVal = true;
 		int size = getMapSize();
