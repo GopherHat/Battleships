@@ -6,11 +6,8 @@ public class Battleships extends Map
 	private int missCount;
 	private int numberofShips;
 	private int turnCount;
-/TODO FIX THE 20 20 hindsight problem (hint input 20 and 20)
-	//This is just used cosmetically to clear the line after everything
 
 	//Battlships Defualt Constructor
-	//Inputs size_in
 	public Battleships(int size_in, TextFile filein)
 	{
 		//size_in is put into the super class Map's Constructor
@@ -97,6 +94,7 @@ public class Battleships extends Map
 	{
 		int x,y;
 		int size = getMapSize();
+		
 
 		if(askToSeeMap() == true)
 		{
@@ -108,14 +106,26 @@ public class Battleships extends Map
 			x = ConsoleInput.readInt();
 			System.out.println("Input y Coordinate: ");
 			y = ConsoleInput.readInt();
-			if(!((x < size && x >= 0 )||( y <= size  && y > 0)))
+			currentPosition = new Position(x,y);
+			if(coordsAreInvalid())
 			{
 				System.out.println("\nInput is invalid: "+
 				"Please input numbers between the 0 and the size of the map");
 			}
-		}while(!((x < size && x >= 0 )||( y <= size  && y > 0)));
-		currentPosition = new Position(x,y);
+		}while(coordsAreInvalid());
+		
 	}
+
+	private boolean coordsAreInvalid()
+	{
+		int x = currentPosition.getX();
+		int y = currentPosition.getY();
+		int size = getMapSize();
+
+		return !(x < size && x >= 0 && y < size && y >= 0);
+
+	}
+
 
 	private boolean askToSeeMap()
 	{

@@ -16,6 +16,11 @@ public class Position
 	//Default Constructor for the Position class
 	//Takes two inputs of integers
 	//the x coordinate and the y coordinate
+	public Position()
+	{
+		x = 0;
+		y = 0;
+	}
 	public Position(int xin,int yin)
 	{
 		x = xin;
