@@ -62,23 +62,29 @@ public class Battleships extends Map
 		}
 		else
 		{
-				System.out.println("MISS!");
+				alertMiss();
 				missCount++;
 		}
 	}
+
+	private void alertMiss()
+	{
+		AnimationUtility miss = new AnimationUtility("missfire.wsfe");
+		miss.play();
+		System.out.println("MISS!");
+		
+	}
 	private void alertHit()
 	{
+		
+		AnimationUtility missle = new AnimationUtility("missleship.wsfe");
+		missle.setWaitTime(250);
+		missle.play();
+		System.out.println("\033[31;1m");
+		AnimationUtility explode = new AnimationUtility("explode.wsfe");
+		explode.play();
 		System.out.println("BOOM!");
-		System.out.println( "            --_--\n"+
-							"         (  -_    _).\n"+
-							"       ( ~       )   )\n"+
-							"     (( )  (    )  ()  )\n"+
-							"      (.   )) (       )\n"+
-							"        ``..     ..``\n"+
-							"             | |\n"+
-							"           (=| |=)\n"+
-							"             | |         \n"+
-							"         (../( )\\.))");
+		System.out.println("\033[31;0m");
 	}
 
 	public void giveScore()
@@ -157,6 +163,7 @@ public class Battleships extends Map
 
 	public void outputMap()
 	{
+		mapAnimation();
 		int size = getMapSize();
 		for(int y=0;y<size;y++)
 		{			
@@ -167,6 +174,12 @@ public class Battleships extends Map
 				System.out.print("\n");
 		}
 		System.out.print("\n");
+    }
+
+    private void mapAnimation()
+    {
+    	AnimationUtility mapOpen = new AnimationUtility("openmap.wsfe");
+    	mapOpen.play();
     }
 
 	public boolean isGameOver()

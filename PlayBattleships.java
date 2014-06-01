@@ -7,6 +7,8 @@ public class PlayBattleships
 		String filename;
 		TextFile file;
 		
+		
+
 		do
 		{
 			System.out.println("Make sure the map file is the following format \n"+
