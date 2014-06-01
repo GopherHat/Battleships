@@ -20,8 +20,6 @@ public class AnimationUtility
 		waitTime = 100;
 		tryLoading();
 		readConfig();
-
-
 	}
 
 
@@ -45,7 +43,7 @@ public class AnimationUtility
 				System.out.println("Error: animation file loader is broken. Quitting....");
 				System.exit(0);
 			}
-			return file;
+		return file;
 	}
 
 	private boolean validateFile()

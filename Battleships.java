@@ -72,7 +72,12 @@ public class Battleships extends Map
 	{
 		AnimationUtility miss = new AnimationUtility("missfire.wsfe");
 		miss.play();
+		System.out.println("\033[36;1m");
+		AnimationUtility explode1 = new AnimationUtility("explode.wsfe");
+		explode1.setFps(20);
+		explode1.play();
 		System.out.println("MISS!");
+		System.out.println("\033[31;0m");
 		
 	}
 	private void alertHit()
@@ -165,16 +170,36 @@ public class Battleships extends Map
 	public void outputMap()
 	{
 		mapAnimation();
+		
 		int size = getMapSize();
 		for(int y=0;y<size;y++)
 		{			
+		System.out.print("\033[46;0m");
 				for(int x = 0; x < size; x++)
 				{
-					System.out.print(getMapElement(x,y));
+					char currentTile = getMapElement(x,y);
+					assignColours(currentTile,x,y);
+					System.out.print(currentTile);
+					
 				}
+				System.out.print("\033[44;0m");
 				System.out.print("\n");
 		}
+		//reset the colour back to black
+		System.out.print("\033[36;0m");
+		
 		System.out.print("\n");
+    }
+
+    public void assignColours(char tileIn,int x,int y)
+    {
+    	
+    	if(tileIn == Map.OCEAN)
+    		System.out.print("\033[34;1m");
+    	if(tileIn == Map.SHIPHIT)
+    		System.out.print("\033[31;1m");
+    	if(tileIn == Map.SHIP)
+    		System.out.print("\033[32;1m");
     }
 
     private void mapAnimation()
