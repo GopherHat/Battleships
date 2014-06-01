@@ -4,7 +4,9 @@ public class Battleships extends Map
 	private Position currentPosition;
 	private int hitCount;
 	private int missCount;
+	private int numberofShips;
 	private int turnCount;
+/TODO FIX THE 20 20 hindsight problem (hint input 20 and 20)
 	//This is just used cosmetically to clear the line after everything
 
 	//Battlships Defualt Constructor
@@ -14,28 +16,31 @@ public class Battleships extends Map
 		//size_in is put into the super class Map's Constructor
 		super(size_in);
 		loadFileToMap(filein);
-		cls();
-		System.out.println("BATTLESHIPS" +
-"	                                                                             \n"+
-"                         `-              . .                                    \n"+
-"                          :              ..h.                                   \n"+
-"                         .o        `..:  :odh/                                  \n"+
-"                       .--y....` `-+hdm-`-yhho-/.``                             \n"+
-"               ``.``-`/oh/syhhhyyyyyhhds+ohhdhyyyys:/o+/..-.``                  \n"+
-"-------:--:/+s+syyysyshhhhhhhdhhhyhhhyyhhhhhyhhhhhhyyhhy//yyyy/++:::::::::+:://-\n"+
-".+yyyyyyyyyhhhhhhhhhhhhhhhhhyyyyyyyyyyyyyyyyyyyyyyyyhhhhhhhhhhyyyssssssssssssy- \n"+
-"  ``:soyyhdhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhy  \n");
+
+		System.out.println("BATTLESHIPS\n" +
+"                                     |__\n"+
+"                                     |\\/\n"+
+"                                     ---\n"+
+"                                     / | [\n"+
+"                              !      | |||\n"+
+"                            _/|     _/|-++'\n"+
+"                        +  +--|    |--|--|_ |-\n"+
+"                     { /|__|  |/\\__|  |--- |||__/\n"+
+"                    +---------------___[}-_===_.'____                 /\\\n"+
+"                ____`-' ||___-{]_| _[}-  |     |_[___\\==--            \\/   _\n"+
+" __..._____--==/___]_|__|_____________________________[___\\==--____,------' .7\n"+
+"|                                                                     BB-61/\n"+
+" \\_________________________________________________________________________|\n"+
+"  (Art By Matthew Bace)\n");
+
 
 		//Since the game has just been created the default constructor
 		//defualt settings for beginining of game
 		hitCount = 0;
 		missCount = 0;
+		turnCount = 0;
 	}
-	private void cls()
-	{
-		for(int i=0;i<24;i++)
-		System.out.println("\n");
-	}
+
 	private int getHitCount()
 	{
 		return hitCount;
@@ -85,13 +90,14 @@ public class Battleships extends Map
 								getHitCount() + 
 								"\nNumber of Times that You Missed:" +
 				 				getMissCount() +
-				  				"\n");
+				  				"\nAscii Explosion By jnh");
 	}
 
 	public void inputAndValidate()
 	{
 		int x,y;
 		int size = getMapSize();
+
 		if(askToSeeMap() == true)
 		{
 			outputMap();
@@ -102,25 +108,25 @@ public class Battleships extends Map
 			x = ConsoleInput.readInt();
 			System.out.println("Input y Coordinate: ");
 			y = ConsoleInput.readInt();
-			if(!(x < size || y < size))
+			if(!((x < size && x >= 0 )||( y <= size  && y > 0)))
 			{
 				System.out.println("\nInput is invalid: "+
-				"Please input a number between the 0 and the size of the map");
+				"Please input numbers between the 0 and the size of the map");
 			}
-		}while(!(x < size || y < size));
+		}while(!((x < size && x >= 0 )||( y <= size  && y > 0)));
 		currentPosition = new Position(x,y);
 	}
 
 	private boolean askToSeeMap()
 	{
-		boolean returnval = false;
+		boolean returnVal = false;
 		System.out.println("Do you want to see the map?");
 		String userInput = ConsoleInput.readWord();
 		if(userInput.equals("yes"))
 		{
-			returnval = true;
+			returnVal = true;
 		}
-		return returnval;
+		return returnVal;
 	}
 
 	private void loadFileToMap(TextFile filein)
@@ -130,8 +136,8 @@ public class Battleships extends Map
 		{
 			for(int x=0;x<size;x++)
 			{
-				char currentchar = filein.readChar();
-				setMapElement(x,y,currentchar);
+				char currentChar = filein.readChar();
+				setMapElement(x,y,currentChar);
 			}
 			filein.clearRestOfLine();
 		}
@@ -167,6 +173,7 @@ public class Battleships extends Map
 				}
 			}
 		}
+		turnCount++;
 		return returnVal;
     }
 }

@@ -1,14 +1,12 @@
 import io.*;
 
-
 public class PlayBattleships
 {
-	//This is just a 
-
 	public static void main(String [] args) 
 	{
 		String filename;
 		TextFile file;
+		
 		do
 		{
 			System.out.println("Make sure the map file is the following format \n"+
@@ -17,13 +15,11 @@ public class PlayBattleships
 			file = new TextFile(filename, "r");
 			file.openFile();
 		}while(!file.readStatus());
-
+		
 		//get the size from the file to put into the Battleships class
 		int size = file.readInt();
 		file.clearRestOfLine();
-		
-		System.gc();
-		
+
 		//Game Logic
 		Battleships battleship = new Battleships(size,file);
 		while(!(battleship.isGameOver()))
