@@ -1,4 +1,5 @@
 import io.*;
+package AnimationUtility.*;
 public class Battleships extends Map
 {
 	private Position currentPosition;
