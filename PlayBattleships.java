@@ -6,8 +6,8 @@ public class PlayBattleships
 	{
 		String filename;
 		TextFile file;
-		
-		
+		Battleships battleship;
+		int size;
 
 		do
 		{
@@ -19,11 +19,11 @@ public class PlayBattleships
 		}while(!file.readStatus());
 		
 		//get the size from the file to put into the Battleships class
-		int size = file.readInt();
+		size = file.readInt();
 		file.clearRestOfLine();
 
 		//Game Logic
-		Battleships battleship = new Battleships(size,file);
+		battleship = new Battleships(size,file);
 		while(!(battleship.isGameOver()))
 		{
 			battleship.inputAndValidate();

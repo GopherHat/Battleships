@@ -5,7 +5,6 @@ public class Battleships extends Map
 	private Position currentPosition;
 	private int hitCount;
 	private int missCount;
-	private int numberofShips;
 	private int turnCount;
 
 	//Battlships Defualt Constructor
