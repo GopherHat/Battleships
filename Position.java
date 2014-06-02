@@ -21,20 +21,20 @@ public class Position
 		x = 0;
 		y = 0;
 	}
-	public Position(int xin,int yin)
+	public Position( int xin,int yin )
 	{
 		x = xin;
 		y = yin;
 	}
 
 	//Copy Constructor
-	public Position(Position pos_in)
+	public Position( Position pos_in )
 	{
 		//Keep in mind that I could have done this:
-		//this(pos_in.getX(),pos_in.getY(),pos_in.getSize());
+		//this( pos_in.getX(),pos_in.getY(),pos_in.getSize() );
 		//Compiles and works
-		setX(pos_in.getX());
-		setY(pos_in.getY());
+		setX( pos_in.getX() );
+		setY( pos_in.getY() );
 		
 		
 	}
@@ -50,12 +50,12 @@ public class Position
 		return y;
 	}
 //Setters
-	private void setY(int yin)
+	private void setY( int yin )
 	{
 		y = yin;
 	}	
 
-	private void setX(int xin)
+	private void setX( int xin )
 	{
 		x = xin;
 	}
