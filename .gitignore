@@ -1,7 +1,4 @@
-classes
-io
 *.class
-<<<<<<< HEAD
 
 *.jpg
 
@@ -12,8 +9,3 @@ io
 Battleships.class
 
 PlayBattleships.class
-=======
-*.pdf
-*.jpg
-*.png
->>>>>>> FETCH_HEAD

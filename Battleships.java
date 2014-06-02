@@ -1,10 +1,10 @@
 import io.*;
-
 public class Battleships extends Map
 {
 	private Position currentPosition;
 	private int hitCount;
 	private int missCount;
+	private int numberofShips;
 	private int turnCount;
 
 	//Battlships Defualt Constructor
@@ -62,34 +62,23 @@ public class Battleships extends Map
 		}
 		else
 		{
-				alertMiss();
+				System.out.println("MISS!");
 				missCount++;
 		}
 	}
-
-	private void alertMiss()
-	{
-		AnimationUtility miss = new AnimationUtility("missfire.wsfe");
-		miss.play();
-		System.out.println("\033[36;1m");
-		AnimationUtility explode1 = new AnimationUtility("explode.wsfe");
-		explode1.setFps(20);
-		explode1.play();
-		System.out.println("MISS!");
-		System.out.println("\033[31;0m");
-		
-	}
 	private void alertHit()
 	{
-		
-		AnimationUtility missle = new AnimationUtility("missleship.wsfe");
-		missle.setWaitTime(250);
-		missle.play();
-		System.out.println("\033[31;1m");
-		AnimationUtility explode = new AnimationUtility("explode.wsfe");
-		explode.play();
 		System.out.println("BOOM!");
-		System.out.println("\033[31;0m");
+		System.out.println( "            --_--\n"+
+							"         (  -_    _).\n"+
+							"       ( ~       )   )\n"+
+							"     (( )  (    )  ()  )\n"+
+							"      (.   )) (       )\n"+
+							"        ``..     ..``\n"+
+							"             | |\n"+
+							"           (=| |=)\n"+
+							"             | |         \n"+
+							"         (../( )\\.))");
 	}
 
 	public void giveScore()
@@ -168,43 +157,16 @@ public class Battleships extends Map
 
 	public void outputMap()
 	{
-		mapAnimation();
-		
 		int size = getMapSize();
 		for(int y=0;y<size;y++)
 		{			
-		System.out.print("\033[46;0m");
 				for(int x = 0; x < size; x++)
 				{
-					char currentTile = getMapElement(x,y);
-					assignColours(currentTile,x,y);
-					System.out.print(currentTile);
-					
+					System.out.print(getMapElement(x,y));
 				}
-				System.out.print("\033[44;0m");
 				System.out.print("\n");
 		}
-		//reset the colour back to black
-		System.out.print("\033[36;0m");
-		
 		System.out.print("\n");
-    }
-
-    public void assignColours(char tileIn,int x,int y)
-    {
-    	
-    	if(tileIn == Map.OCEAN)
-    		System.out.print("\033[34;1m");
-    	if(tileIn == Map.SHIPHIT)
-    		System.out.print("\033[31;1m");
-    	if(tileIn == Map.SHIP)
-    		System.out.print("\033[32;1m");
-    }
-
-    private void mapAnimation()
-    {
-    	AnimationUtility mapOpen = new AnimationUtility("openmap.wsfe");
-    	mapOpen.play();
     }
 
 	public boolean isGameOver()

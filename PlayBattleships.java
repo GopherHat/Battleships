@@ -6,9 +6,7 @@ public class PlayBattleships
 	{
 		String filename;
 		TextFile file;
-		Battleships battleship;
-		int size;
-
+		
 		do
 		{
 			System.out.println("Make sure the map file is the following format \n"+
@@ -19,11 +17,11 @@ public class PlayBattleships
 		}while(!file.readStatus());
 		
 		//get the size from the file to put into the Battleships class
-		size = file.readInt();
+		int size = file.readInt();
 		file.clearRestOfLine();
 
 		//Game Logic
-		battleship = new Battleships(size,file);
+		Battleships battleship = new Battleships(size,file);
 		while(!(battleship.isGameOver()))
 		{
 			battleship.inputAndValidate();
