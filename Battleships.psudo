@@ -1,0 +1,169 @@
+CLASS Battleships EXTENDS Map
+
+	ClassFields:
+	currentPosition
+	hitCount
+	missCount
+	numberofShips
+	turnCount
+
+
+	Battleships Constructor
+	
+		IMPORTS size_in,filein
+		super<--size_in
+		loadFileToMap( filein )
+
+		OUTPUT ASCIIBATTLESHIP
+		hitCount = 0
+		missCount = 0
+		turnCount = 0
+	
+
+	SUBMODULE getHitCount
+		IMPORT None
+		EXPORT hitcount
+
+	SUBMODULE getMissCount
+	
+		IMPORT None
+		EXPORT missCount
+	
+
+	 SUBMODULE checkHit
+	
+		IMPORT None
+		EXPORT None
+		x = currentPosition.getX
+		y = currentPosition.getY
+		currentTile = getMapElement<--( x,y )
+		
+		
+		if( currentTile = SHIP )
+		
+			alertHit
+			setMapElement( x,y,SHIPHIT )
+			hitCount
+		
+		else
+			
+			OUTPUT miss
+			missCount++
+		
+	
+	SUBMODULE alertHit
+	
+		IMPORT None
+		EXPORT None
+		OUTPUT "BOOM! Direct Hit"
+	
+	
+	 SUBMODULE giveScore
+	
+		IMPORT None
+		EXPORT None
+		outputMap
+		OUTPUT"Congratulations!You win!Number of Ships That Got Destroyed:" +
+								getHitCount + 
+								"Number of Times that You Missed:" +
+				 				getMissCount +
+				  				"Ascii Explosion By jnh" )
+	
+
+	 SUBMODULE inputAndValidate
+	
+		IMPORT None
+		EXPORT None
+		 x,y
+		 size = getMapSize
+		
+		
+		if( askToSeeMap = true )
+		
+			outputMap
+		
+		DO
+		
+			OUPUT "Input x Coordinate: " 
+			INPUT x
+			OUTPUTln( "Input y Coordinate: " )
+			INPUT y
+			currentPosition = new Position( x,y )
+			if( coordsAreInvalid )
+			
+				OUTPUTln( "Input is invalid: "+
+				"Please input numbers between the 0 and the size of the map" )
+			
+		WHILE( coordsAreInvalid )
+		
+	
+
+	SUBMODULE  coordsAreInvalid
+		IMPORT None
+		EXPORT !( x < size AND x >= 0 AND y < size AND y >= 0 )
+		 x = currentPosition.getX
+		 y = currentPosition.getY
+		 size = getMapSize
+
+	
+
+	
+	SUBMODULE  askToSeeMap
+		IMPORT None
+		EXPORT Boolean
+		 returnVal = false
+		OUTPUTln( "DO you want to see the map?" )
+		String userInput = INPUTWord
+		
+		if( userInput.equals<--"yes" OR userInput.equals<--"y" )
+		
+			returnVal = true
+		
+		
+	
+	
+	
+	SUBMODULE loadFileToMap
+		IMPORT filein
+		EXPORT None
+		 size = getMapSize
+		FOR(  y=0,y<size,y++ )
+		
+			FOR(  x=0,x<size,x++ )
+			
+				char currentChar = filein.readChar
+				setMapElement( x,y,currentChar )
+			
+			filein.clearRestOfLine
+		
+
+	
+
+	
+	SUBMODULE outputMap
+		IMPORT None
+		EXPORT None
+		 size = getMapSize
+		FOR(  y=0,y<size,y++ )
+					
+				FOR(  x = 0, x < size, x++ )
+				
+					OUTPUT( getMapElement( x,y ) )
+				
+				OUTPUT( "" )
+		
+		OUTPUT( "" )
+    
+    
+	SUBMODULE isGameOver
+	IMPORT None
+	EXPORT returnVal
+		 returnVal = true
+		 size = getMapSize
+		FOR(  y=0,y<size,y++ )
+			FOR(  x=0,x<size,x++ )
+				if( getMapElement( x,y ) = SHIP )
+					returnVal = false
+		turnCount++
+		
+    

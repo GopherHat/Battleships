@@ -1,0 +1,38 @@
+ Class Position
+	CLASS Field: x
+	CLASS Field: y
+	Default Constructor Position
+	IMPORT None
+	EXPORT None
+	x = 0
+	y = 0
+	 
+	Alternate Constructor Position
+	IMPORTS xin,yin
+	x = xin
+	y = yin
+	
+	Copy Constructor Position
+	IMPORT position
+	EXPORT position
+		setX<--(position<--getX)
+		setY<--(position<--getY)
+
+	
+	SUBMODULE getX
+	EXPORT x
+	
+	SUBMODULE getY
+	EXPORT y
+	
+	SUBMODULE setY
+	IMPORT yin
+	EXPORT None
+	y = yin
+		
+	SUBMODULE setX
+	IMPORT xin
+	EXPORT None
+	x = xin
+	
+

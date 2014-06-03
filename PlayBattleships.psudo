@@ -1,0 +1,20 @@
+CLASS PlayBattleships
+	MAIN
+		filename;
+		file;
+		DO WHILE( !file.readStatus() );
+			OUTPUT Make sure the map file is the following format 
+			<filename>.dat \nthe test file is named: game1.dat To Quit the game Ctrl + C Enter FileName:
+			INPUT FileName
+			file = new Constructor TextFile<--(filename, "r" )
+			file.openFile
+		//get the size from the file to put into the Battleships class
+		size<--file.readInt
+		file.clearRestOfLine
+
+		//Game Logic
+		Battleships battleship = new Battleships( size,file );
+		WHILE NOT battleship<--isGameOver
+			battleship.inputAndValidate();
+			battleship.checkHit();
+		battleship.giveScore();	
